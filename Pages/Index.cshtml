@@ -1,0 +1,40 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center mt-5">
+    <h2 style="text-align:left">Currency Calculator</h2>
+    <h4 style="text-align:left">Convert the currency</h4>
+    <form method="post">
+        <div class="row">
+            <div class="col">
+                <input type="text" class="form-control" name="MoneyToConvert" />
+                <span asp-validation-for="MoneyToConvert"></span>
+            </div>
+            <div class="col">
+                <select asp-for="ConvertFromCurrency" asp-items="Model.Currencies">
+                    <option value="">Select a currency</option>
+                </select>
+            </div>
+            <div class="col">
+                <p> convert to</p>
+            </div>
+            <div class="col">
+                <select asp-for="ConvertToCurrency" asp-items="Model.Currencies">
+                    <option value="">Select a currency</option>
+                </select>
+            </div>
+            <div class="col">
+                <button type="submit" class="btn btn-primary">Convert</button>
+            </div>
+        </div>
+        @if (Model.ConvertedMoney > 0)
+        {
+            <p style="text-align:left">
+                @($"{Model.MoneyToConvert} {Model.ConvertFromCurrency} = {Model.ConvertedMoney} {Model.ConvertToCurrency}")
+            </p>
+        }
+    </form>
+</div>
